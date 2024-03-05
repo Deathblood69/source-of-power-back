@@ -1,5 +1,5 @@
 # Utilisez l'image PostgreSQL officielle comme image de base
-FROM postgres:lts
+FROM postgres:16
 
 # Définissez l'utilisateur et le mot de passe par défaut pour la base de données
 ENV POSTGRES_USER=sop_db_admin
