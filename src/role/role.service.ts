@@ -4,6 +4,6 @@ import {UserRole} from './enum/user.role.enum'
 @Injectable()
 export class RoleService {
   async findAll() {
-    return UserRole
+    return Object.values(UserRole)
   }
 }
