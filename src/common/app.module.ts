@@ -10,6 +10,9 @@ import {jwtConfig} from './config/auth.config'
 import {RoleModule} from '../role/role.module'
 import {UserModule} from '../user/user.module'
 import {AuthModule} from '../auth/auth.module'
+import {PersonnageModule} from '../personnage/personnage.module'
+import {MaisonModule} from '../maison/maison.module'
+import {RelationModule} from '../relation/relation.module'
 
 @Module({
   imports: [
@@ -23,6 +26,9 @@ import {AuthModule} from '../auth/auth.module'
     AuthModule,
     RoleModule,
     UserModule,
+    PersonnageModule,
+    MaisonModule,
+    RelationModule,
   ],
   exports: [JwtModule],
 })
