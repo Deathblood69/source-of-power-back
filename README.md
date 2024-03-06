@@ -14,7 +14,7 @@ Un jeu de stratégie et d'influence
 Installation des dépendances
 
 ```bash
-$npm install
+npm install
 ```
 
 Création de l'image docker du projet
@@ -28,6 +28,11 @@ Préparation de la base de données
 ```bash
 docker build -f database.dockerfile -t postgre_sop-image .
 docker run -d -p 5432:5432 --name sop-postgres-container postgre_sop-image
+```
+
+Migration de la base de donnée
+
+```bash
 npm run migration:run
 ```
 

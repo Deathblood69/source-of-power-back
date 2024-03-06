@@ -46,7 +46,7 @@ async function bootstrap() {
 
   // LOG APRES DEMARRAGE
   logger.debug(`L'environnement est en mode ${appConfig.env}`)
-  logger.log(`Le serveur est disponile sur ${await app.getUrl()}/api`)
+  logger.log(`Le serveur est disponible sur ${await app.getUrl()}/api`)
 
   // AJOUT DE LA GESTION DES COOKIES
   app.use(cookieParser())

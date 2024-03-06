@@ -7,6 +7,9 @@ import configs from 'src/common/config/index'
 import {RefreshTokenMiddleware} from './middleware/refresh-token.middleware'
 import {typeOrmConfig} from './config/database.config'
 import {jwtConfig} from './config/auth.config'
+import {RoleModule} from '../role/role.module'
+import {UserModule} from '../user/user.module'
+import {AuthModule} from '../auth/auth.module'
 
 @Module({
   imports: [
@@ -17,6 +20,9 @@ import {jwtConfig} from './config/auth.config'
     PassportModule,
     JwtModule.register(jwtConfig),
     TypeOrmModule.forRoot(typeOrmConfig),
+    AuthModule,
+    RoleModule,
+    UserModule,
   ],
   exports: [JwtModule],
 })
