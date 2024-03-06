@@ -21,10 +21,10 @@ import {UserDTO} from './dto/user.dto'
 import {User} from './entities/user.entity'
 import {UserService} from './user.service'
 import {AuthGuard} from 'src/auth/guard/auth.guard'
-import {UserRole} from 'src/common/enum/user.role.enum'
 
 import {NoSelfUpdateUserGuard} from '../auth/guard/NoSelfUpdateUser.guard'
 import {HasRoles} from '../role/decorator/role.decorator'
+import {UserRole} from '../role/enum/user.role.enum'
 
 @ApiTags('user')
 @ApiBearerAuth()

@@ -1,12 +1,8 @@
 import {Test, TestingModule} from '@nestjs/testing'
-
 import {INestApplication} from '@nestjs/common'
-import {AppTestModule} from '../../app.test.module'
-import {User} from '../../user/entities/user.entity'
-import {Repository} from 'typeorm'
 import * as pactum from 'pactum'
+import {AppTestModule} from '../../common/app.test.module'
 
-let repository: Repository<User>
 describe('Auth (pe2e)', () => {
   let app: INestApplication
   let moduleFixture: TestingModule
@@ -38,7 +34,7 @@ describe('Auth (pe2e)', () => {
       .post('/auth/login')
       .withBody(user)
       .expectStatus(201)
-      .expectBody(['ADMINISTRATEUR', 'ENROLEUR'])
+      .expectBody(['ADMINISTRATEUR'])
   })
 
   it('login nok / bad user', async () => {
@@ -85,7 +81,7 @@ describe('Auth (pe2e)', () => {
       .post('/auth/login')
       .withBody(user)
       .expectStatus(201)
-      .expectBody(['ADMINISTRATEUR', 'ENROLEUR'])
+      .expectBody(['ADMINISTRATEUR'])
   })
 
   it('login nok / bad pwd -> lock', async () => {

@@ -8,8 +8,8 @@ import {
 } from '@nestjs/swagger'
 import {AuthGuard} from '../auth/guard/auth.guard'
 import {HasRoles} from './decorator/role.decorator'
-import {UserRole} from '../common/enum/user.role.enum'
 import {RoleService} from './role.service'
+import {UserRole} from './enum/user.role.enum'
 
 @ApiTags('role')
 @ApiBearerAuth()

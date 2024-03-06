@@ -29,10 +29,10 @@ export class NoSelfUpdateUserGuard implements CanActivate {
    */
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest()
-    //recupération de l'id user a modifier
+    //recupération de l'id user à modifier
     const id = req.params.id || req.body.id
 
-    //recupération de l'id user a connecté
+    //recupération de l'id user à connecter
     const token = extractTokenFromHeader(req)
     const {username} = extractPayloadFromVerifiedToken(token, this.jwtService)
 

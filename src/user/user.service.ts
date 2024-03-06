@@ -12,7 +12,7 @@ import * as bcrypt from 'bcrypt'
 import * as _ from 'lodash'
 import {isEqual} from 'lodash'
 import {MessageException} from 'src/common/exception/message.exception'
-import {UserRole} from '../common/enum/user.role.enum'
+import {UserRole} from '../role/enum/user.role.enum'
 
 @Injectable()
 export class UserService {
@@ -132,7 +132,7 @@ export class UserService {
    */
   async delete(userId: string): Promise<void> {
     const user = await this.findOne('id', userId)
-    //Supprime les roles pour checkLastRole.
+    //Supprime-les roles pour checkLastRole.
     user.roles = []
     await this.checkLastRole(user)
     await this.userRepository.delete(userId)
@@ -146,19 +146,19 @@ export class UserService {
    */
   async checkLastRole(partialUser: Partial<User>): Promise<boolean> {
     if (partialUser && partialUser.id) {
-      const {roles: roles, id: id} = await this.userRepository.findOne({
+      const {roles: roles} = await this.userRepository.findOne({
         where: {id: partialUser.id},
       })
       const rolesPartialUser = Array.from(partialUser.roles.values()).sort()
 
-      //compare la liste des rolesBDD du user avec la liste des roles du Partialuser
-      //si pas de diff -> break  ex bdd['ADMIN'] - partial['ADMIN']
+      //compare la liste des rolesBDD de l'utilisateur avec la liste des roles du Partial<User>
+      //si pas de diff → break ex bdd['ADMIN'] - partial['ADMIN']
       if (isEqual(rolesPartialUser, roles)) {
         return false
       }
 
-      // si tous les rolesBDD sont dans Partialuser -> break ex bdd['ADMIN'] - partial['ADMIN','ENROLEUR']
-      // si au moins un roleBDD n'est pas dans Partialuser -> gestionErreur ex bdd['ADMIN','ENROLEUR','OPERATEUR'] - partial['ADMIN']
+      // si tous les rolesBDD sont dans Partial<User> → break ex bdd['ADMIN'] - partial['ADMIN']
+      // si au moins un roleBDD n'est pas dans Partial<User> → gestionErreur ex bdd['ADMIN'] - partial['ADMIN']
       // récupère les roles concernés
       const rolesChange = roles.filter((r) => !rolesPartialUser.includes(r))
 
@@ -177,7 +177,7 @@ export class UserService {
         }
 
         if (lastRoles.length > 0) {
-          // HTTPEXCEPTION code 509
+          // HTTP EXCEPTION code 509
           throw new ConflictException(
             `LAST_ROLE_EXCEPTION_${lastRoles.map((value) => value)}`,
           )

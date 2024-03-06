@@ -1,10 +1,9 @@
-import {UserRole} from 'src/common/enum/user.role.enum'
 import {User} from 'src/user/entities/user.entity'
 import {MigrationInterface, QueryRunner} from 'typeorm'
+import {UserRole} from '../role/enum/user.role.enum'
 
 export class InsertData1706082616361 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-
     const user = new User()
     user.lastName = 'Dev'
     user.firstName = 'Dev'

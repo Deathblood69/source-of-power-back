@@ -7,8 +7,8 @@ import {
 import {JwtService} from '@nestjs/jwt'
 import {UserService} from '../user/user.service'
 import {User} from 'src/user/entities/user.entity'
-import {UserRole} from '../common/enum/user.role.enum'
 import {extractPayloadFromVerifiedToken} from '../common/utils/tokenUtils'
+import {UserRole} from '../role/enum/user.role.enum'
 
 @Injectable()
 export class AuthService {
@@ -20,9 +20,9 @@ export class AuthService {
   /**
    * Asynchronously logs in the user.
    *
-   * @param {string} username - The username of the user.
-   * @param {string} password - The password of the user.
-   * @return {object} - An object containing the token and roles of the user.
+   * @param username - The username of the user.
+   * @param password - The password of the user.
+   * @return An object containing the token and roles of the user.
    */
   async login(username: string, password: string) {
     const user = await this.validateUser(username, password)
@@ -73,10 +73,7 @@ export class AuthService {
 
   private isAdmin(user: User): boolean {
     const roles = user.roles
-    return (
-      roles.includes(UserRole.ADMINISTRATEUR) ||
-      roles.includes(UserRole.ENROLEUR)
-    )
+    return roles.includes(UserRole.ADMINISTRATEUR)
   }
 
   /**

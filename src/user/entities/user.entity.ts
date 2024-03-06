@@ -1,7 +1,7 @@
 import {BeforeInsert, Column, Entity} from 'typeorm'
 import {Exclude} from 'class-transformer'
 import {AbstractEntity} from 'src/common/abstract/entity.abstract'
-import {UserRole} from 'src/common/enum/user.role.enum'
+import {UserRole} from '../../role/enum/user.role.enum'
 
 @Entity()
 export class User extends AbstractEntity {
