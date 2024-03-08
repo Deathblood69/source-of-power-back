@@ -4,6 +4,7 @@ import {Repository} from 'typeorm'
 
 import {paginate, PaginateQuery} from 'nestjs-paginate'
 import {Relation} from './entities/relation.entity'
+import {TypeRelation} from './enum/typeRelation.enum'
 
 @Injectable()
 export class RelationService {
@@ -22,11 +23,22 @@ export class RelationService {
    */
   async create(entityData: Partial<Relation>) {
     try {
-      await this.repository.save({
+      const otherRelation: Partial<Relation> = {
         personnage: entityData.relatedPersonnage,
-        type: entityData.type,
         relatedPersonnage: entityData.personnage,
-      })
+      }
+      switch (entityData.type) {
+        case TypeRelation.MARIAGE:
+          otherRelation.type = entityData.type
+          break
+        case TypeRelation.DIVORE:
+          otherRelation.type = entityData.type
+          break
+        case TypeRelation.PARENT:
+          otherRelation.type = TypeRelation.ENFANT
+          break
+      }
+      await this.repository.save(otherRelation)
       return await this.repository.save(entityData)
     } catch (e) {
       this.logger.error(e)

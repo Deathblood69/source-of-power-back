@@ -1,6 +1,6 @@
 export enum TypeRelation {
-  COUPLE = 'COUPLE',
-  FRATRIE = 'FRATRIE',
+  MARIAGE = 'COUPLE',
+  DIVORE = 'DIVORCE',
   PARENT = 'PARENT',
   ENFANT = 'ENFANT',
 }
