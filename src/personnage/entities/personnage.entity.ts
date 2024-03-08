@@ -19,6 +19,6 @@ export class Personnage extends AbstractEntity {
   @JoinColumn({name: 'maison_id', referencedColumnName: 'id'})
   maison: Maison
 
-  @OneToMany(() => Relation, (relation) => relation.personnage)
+  @OneToMany(() => Relation, (relation) => relation.personnage, {eager: true})
   relations: Relation[]
 }

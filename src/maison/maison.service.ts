@@ -46,7 +46,7 @@ export class MaisonService {
           chef: true,
         },
         maxLimit: 0,
-        relations: ['chef', 'personnages'],
+        relations: ['chef', 'personnages', 'personnages.relations'],
       })
     } catch (e) {
       this.logger.error(e)
