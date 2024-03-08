@@ -37,16 +37,16 @@ export class MaisonService {
   public async findAll(query: PaginateQuery) {
     try {
       return paginate(query, this.repository, {
-        sortableColumns: ['nom', 'chef'],
+        sortableColumns: ['nom'],
         defaultSortBy: [['nom', 'ASC']],
         nullSort: 'last',
-        searchableColumns: ['nom', 'chef'],
+        searchableColumns: ['nom'],
         filterableColumns: {
           nom: true,
           chef: true,
         },
         maxLimit: 0,
-        relations: ['chef', 'personnages', 'personnages.relations'],
+        relations: ['personnages', 'personnages.relations'],
       })
     } catch (e) {
       this.logger.error(e)
