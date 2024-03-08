@@ -1,7 +1,7 @@
 import {ApiProperty} from '@nestjs/swagger'
 import {PersonnageDto} from '../../personnage/dto/personnage.dto'
 
-export class MaisonDto {
+export class FamilleDto {
   @ApiProperty()
   nom: string
 

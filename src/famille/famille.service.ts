@@ -1,16 +1,16 @@
 import {HttpException, HttpStatus, Injectable, Logger} from '@nestjs/common'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
-import {Maison} from './entities/maison.entity'
+import {Famille} from './entities/famille.entity'
 import {paginate, PaginateQuery} from 'nestjs-paginate'
 
 @Injectable()
-export class MaisonService {
+export class FamilleService {
   private readonly logger = new Logger('PersonnageService')
 
   constructor(
-    @InjectRepository(Maison)
-    private readonly repository: Repository<Maison>,
+    @InjectRepository(Famille)
+    private readonly repository: Repository<Famille>,
   ) {}
 
   /**
@@ -19,7 +19,7 @@ export class MaisonService {
    * @param entityData - The partial entity data to be saved.
    * @return The saved entity data.
    */
-  async create(entityData: Partial<Maison>) {
+  async create(entityData: Partial<Famille>) {
     try {
       return await this.repository.save(entityData)
     } catch (e) {
@@ -84,7 +84,7 @@ export class MaisonService {
    * @paramentityData - The partial entity data to be saved.
    * @return The saved entity data.
    */
-  async update(entityData: Partial<Maison>) {
+  async update(entityData: Partial<Famille>) {
     try {
       return await this.repository.save(entityData)
     } catch (e) {

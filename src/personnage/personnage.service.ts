@@ -50,7 +50,7 @@ export class PersonnageService {
           age: true,
         },
         maxLimit: 0,
-        relations: ['maison', 'relations'],
+        relations: ['famille', 'relations'],
       })
     } catch (e) {
       this.logger.error(e)

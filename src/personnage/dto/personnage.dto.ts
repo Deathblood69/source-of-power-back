@@ -14,5 +14,5 @@ export class PersonnageDto {
   genre: string
 
   @ApiProperty()
-  maison: string
+  famille: string
 }

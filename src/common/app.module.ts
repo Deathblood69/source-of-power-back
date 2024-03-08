@@ -11,7 +11,7 @@ import {RoleModule} from '../role/role.module'
 import {UserModule} from '../user/user.module'
 import {AuthModule} from '../auth/auth.module'
 import {PersonnageModule} from '../personnage/personnage.module'
-import {MaisonModule} from '../maison/maison.module'
+import {FamilleModule} from '../famille/famille.module'
 import {RelationModule} from '../relation/relation.module'
 
 @Module({
@@ -27,7 +27,7 @@ import {RelationModule} from '../relation/relation.module'
     RoleModule,
     UserModule,
     PersonnageModule,
-    MaisonModule,
+    FamilleModule,
     RelationModule,
   ],
   exports: [JwtModule],
