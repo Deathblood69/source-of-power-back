@@ -11,5 +11,8 @@ export class PersonnageDto {
   dateNaissance: string
 
   @ApiProperty()
+  genre: string
+
+  @ApiProperty()
   maison: string
 }
