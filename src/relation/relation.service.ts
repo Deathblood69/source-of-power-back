@@ -28,15 +28,14 @@ export class RelationService {
         relatedPersonnage: entityData.personnage,
       }
       switch (entityData.type) {
-        case TypeRelation.MARIAGE:
-          otherRelation.type = entityData.type
-          break
-        case TypeRelation.DIVORE:
-          otherRelation.type = entityData.type
-          break
         case TypeRelation.PARENT:
           otherRelation.type = TypeRelation.ENFANT
           break
+        case TypeRelation.ENFANT:
+          otherRelation.type = TypeRelation.PARENT
+          break
+        default:
+          otherRelation.type = entityData.type
       }
       await this.repository.save(otherRelation)
       return await this.repository.save(entityData)
