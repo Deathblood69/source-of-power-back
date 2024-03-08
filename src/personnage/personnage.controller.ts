@@ -43,13 +43,13 @@ export class PersonnageController {
   }
 
   @Get()
-  @ApiOperation({summary: 'Liste des personnages'})
+  @ApiOperation({summary: 'Liste des membres'})
   @ApiQuery({name: 'limit', type: Number, required: false})
   @ApiQuery({name: 'page', type: Number, required: false})
   @ApiQuery({name: 'search', type: String, required: false})
   @ApiQuery({name: 'sortBy', type: String, required: false})
   @ApiQuery({name: 'filter', type: String, required: false})
-  @ApiResponse({status: 200, description: 'Liste des personnages'})
+  @ApiResponse({status: 200, description: 'Liste des membres'})
   public findAll(
     @Paginate() query: PaginateQuery,
   ): Promise<Paginated<Personnage>> {

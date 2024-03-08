@@ -6,8 +6,5 @@ export class FamilleDto {
   nom: string
 
   @ApiProperty()
-  chef: PersonnageDto[]
-
-  @ApiProperty()
-  famille: PersonnageDto[]
+  membres: PersonnageDto[]
 }

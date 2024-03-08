@@ -47,9 +47,9 @@ export class FamilleService {
         },
         maxLimit: 0,
         relations: [
-          'personnages',
-          'personnages.relations',
-          'personnages.relations.relatedPersonnage',
+          'membres',
+          'membres.relations',
+          'membres.relations.relatedPersonnage',
         ],
       })
     } catch (e) {

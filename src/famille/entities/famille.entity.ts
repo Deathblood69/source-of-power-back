@@ -8,5 +8,5 @@ export class Famille extends AbstractEntity {
   nom: string
 
   @OneToMany(() => Personnage, (personnage) => personnage.famille, {eager: true})
-  personnages: Personnage[]
+  membres: Personnage[]
 }

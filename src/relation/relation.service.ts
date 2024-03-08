@@ -63,7 +63,7 @@ export class RelationService {
           chef: true,
         },
         maxLimit: 0,
-        relations: ['personnages'],
+        relations: ['membres'],
       })
     } catch (e) {
       throw new HttpException('ERREUR_SEARCH', HttpStatus.BAD_REQUEST)

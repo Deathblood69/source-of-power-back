@@ -19,7 +19,7 @@ export class Personnage extends AbstractEntity {
   @Column({name: 'genre', nullable: true})
   genre: Genre
 
-  @ManyToOne(() => Famille, (famille) => famille.personnages, {nullable: true})
+  @ManyToOne(() => Famille, (famille) => famille.membres, {nullable: true})
   @JoinColumn({name: 'famille_id', referencedColumnName: 'id'})
   famille: Famille
 
