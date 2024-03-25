@@ -16,12 +16,12 @@ export class FamilleService {
   /**
    * Saves entity data to the database.
    *
-   * @param entityData - The partial entity data to be saved.
+   * @param data - The partial entity data to be saved.
    * @return The saved entity data.
    */
-  async create(entityData: Partial<Famille>) {
+  async create(data: Partial<Famille>) {
     try {
-      return await this.repository.save(entityData)
+      return await this.repository.save(data)
     } catch (e) {
       this.logger.error(e)
       throw new HttpException('ERREUR_CREATE', HttpStatus.CONFLICT)
@@ -81,12 +81,15 @@ export class FamilleService {
   /**
    * Saves entity data to the database.
    *
-   * @paramentityData - The partial entity data to be saved.
+   * @paramdata - The partial entity data to be saved.
    * @return The saved entity data.
    */
-  async update(entityData: Partial<Famille>) {
+  async update(data: Partial<Famille>) {
     try {
-      return await this.repository.save(entityData)
+      const entity = await this.repository.findOne({
+        where: {id: data.id ?? ''},
+      })
+      return await this.repository.save({...entity, ...data})
     } catch (e) {
       this.logger.error(e)
       throw new HttpException('ERREUR_UPDATE', HttpStatus.CONFLICT)
