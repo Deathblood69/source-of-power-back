@@ -13,7 +13,8 @@ export class RelationService {
   constructor(
     @InjectRepository(Relation)
     private readonly repository: Repository<Relation>,
-  ) {}
+  ) {
+  }
 
   /**
    * Saves entity data to the database.
@@ -41,7 +42,7 @@ export class RelationService {
       return await this.repository.save(entityData)
     } catch (e) {
       this.logger.error(e)
-      throw new HttpException('ERREUR_CREATE', HttpStatus.CONFLICT)
+      throw new HttpException('ERREUR_CREATE', HttpStatus.BAD_REQUEST)
     }
   }
 
@@ -52,22 +53,22 @@ export class RelationService {
    * @return A promise that resolves to a paginated list of entities.
    */
   public async findAll(query: PaginateQuery) {
-    try {
-      return paginate(query, this.repository, {
-        sortableColumns: ['type'],
-        defaultSortBy: [['type', 'ASC']],
-        nullSort: 'last',
-        searchableColumns: ['type'],
-        filterableColumns: {
-          nom: true,
-          chef: true,
-        },
-        maxLimit: 0,
-        relations: ['membres'],
-      })
-    } catch (e) {
+    return paginate(query, this.repository, {
+      sortableColumns: ['type'],
+      defaultSortBy: [['type', 'ASC']],
+      nullSort: 'last',
+      searchableColumns: ['type'],
+      filterableColumns: {
+        nom: true,
+        chef: true,
+      },
+      maxLimit: 0,
+      relations: ['membres'],
+    }).catch(e => {
+      this.logger.error(e)
       throw new HttpException('ERREUR_SEARCH', HttpStatus.BAD_REQUEST)
-    }
+    })
+
   }
 
   /**

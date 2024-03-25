@@ -11,7 +11,8 @@ export class FamilleService {
   constructor(
     @InjectRepository(Famille)
     private readonly repository: Repository<Famille>,
-  ) {}
+  ) {
+  }
 
   /**
    * Saves entity data to the database.
@@ -24,7 +25,7 @@ export class FamilleService {
       return await this.repository.save(data)
     } catch (e) {
       this.logger.error(e)
-      throw new HttpException('ERREUR_CREATE', HttpStatus.CONFLICT)
+      throw new HttpException('ERREUR_CREATE', HttpStatus.BAD_REQUEST)
     }
   }
 
@@ -35,27 +36,25 @@ export class FamilleService {
    * @return A promise that resolves to a paginated list of entities.
    */
   public async findAll(query: PaginateQuery) {
-    try {
-      return paginate(query, this.repository, {
-        sortableColumns: ['nom'],
-        defaultSortBy: [['nom', 'ASC']],
-        nullSort: 'last',
-        searchableColumns: ['nom'],
-        filterableColumns: {
-          nom: true,
-          chef: true,
-        },
-        maxLimit: 0,
-        relations: [
-          'membres',
-          'membres.relations',
-          'membres.relations.relatedPersonne',
-        ],
-      })
-    } catch (e) {
+    return paginate(query, this.repository, {
+      sortableColumns: ['nom'],
+      defaultSortBy: [['nom', 'ASC']],
+      nullSort: 'last',
+      searchableColumns: ['nom'],
+      filterableColumns: {
+        nom: true,
+        chef: true,
+      },
+      maxLimit: 0,
+      relations: [
+        'membres',
+        'membres.relations',
+        'membres.relations.relatedPersonne',
+      ],
+    }).catch(e => {
       this.logger.error(e)
       throw new HttpException('ERREUR_SEARCH', HttpStatus.BAD_REQUEST)
-    }
+    })
   }
 
   /**
