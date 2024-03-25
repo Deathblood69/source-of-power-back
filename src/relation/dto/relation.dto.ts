@@ -3,11 +3,11 @@ import {TypeRelation} from '../enum/typeRelation.enum'
 
 export class RelationDto {
   @ApiProperty()
-  personnage: string
+  personne: string
 
   @ApiProperty()
   type: TypeRelation
 
   @ApiProperty()
-  relatedPersonnage: string
+  relatedPersonne: string
 }

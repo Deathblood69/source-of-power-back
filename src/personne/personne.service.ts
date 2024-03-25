@@ -1,16 +1,16 @@
 import {HttpException, HttpStatus, Injectable, Logger} from '@nestjs/common'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
-import {Personnage} from './entities/personnage.entity'
+import {Personne} from './entities/personne.entity'
 import {paginate, PaginateQuery} from 'nestjs-paginate'
 
 @Injectable()
-export class PersonnageService {
-  private readonly logger = new Logger('PersonnageService')
+export class PersonneService {
+  private readonly logger = new Logger('PersonneService')
 
   constructor(
-    @InjectRepository(Personnage)
-    private readonly repository: Repository<Personnage>,
+    @InjectRepository(Personne)
+    private readonly repository: Repository<Personne>,
   ) {}
 
   /**
@@ -19,7 +19,7 @@ export class PersonnageService {
    * @param entityData - The partial entity data to be saved.
    * @return The saved entity data.
    */
-  async create(entityData: Partial<Personnage>) {
+  async create(entityData: Partial<Personne>) {
     try {
       return await this.repository.save(entityData)
     } catch (e) {
@@ -82,7 +82,7 @@ export class PersonnageService {
    * @paramentityData - The partial entity data to be saved.
    * @return The saved entity data.
    */
-  async update(entityData: Partial<Personnage>) {
+  async update(entityData: Partial<Personne>) {
     try {
       return await this.repository.save(entityData)
     } catch (e) {

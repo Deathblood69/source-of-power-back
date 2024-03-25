@@ -8,7 +8,7 @@ import {TypeRelation} from './enum/typeRelation.enum'
 
 @Injectable()
 export class RelationService {
-  private readonly logger = new Logger('PersonnageService')
+  private readonly logger = new Logger('PersonneService')
 
   constructor(
     @InjectRepository(Relation)
@@ -24,8 +24,8 @@ export class RelationService {
   async create(entityData: Partial<Relation>) {
     try {
       const otherRelation: Partial<Relation> = {
-        personnage: entityData.relatedPersonnage,
-        relatedPersonnage: entityData.personnage,
+        personne: entityData.relatedPersonne,
+        relatedPersonne: entityData.personne,
       }
       switch (entityData.type) {
         case TypeRelation.PARENT:

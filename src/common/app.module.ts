@@ -10,7 +10,7 @@ import {jwtConfig} from './config/auth.config'
 import {RoleModule} from '../role/role.module'
 import {UserModule} from '../user/user.module'
 import {AuthModule} from '../auth/auth.module'
-import {PersonnageModule} from '../personnage/personnage.module'
+import {PersonneModule} from '../personne/personne.module'
 import {FamilleModule} from '../famille/famille.module'
 import {RelationModule} from '../relation/relation.module'
 
@@ -26,7 +26,7 @@ import {RelationModule} from '../relation/relation.module'
     AuthModule,
     RoleModule,
     UserModule,
-    PersonnageModule,
+    PersonneModule,
     FamilleModule,
     RelationModule,
   ],

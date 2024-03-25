@@ -6,7 +6,7 @@ import {Genre} from '../enum/genre.enum'
 
 @Entity()
 @Unique(['nom', 'prenom', 'dateNaissance'])
-export class Personnage extends AbstractEntity {
+export class Personne extends AbstractEntity {
   @Column({name: 'nom', nullable: false})
   nom: string
 
@@ -23,6 +23,6 @@ export class Personnage extends AbstractEntity {
   @JoinColumn({name: 'famille_id', referencedColumnName: 'id'})
   famille: Famille
 
-  @OneToMany(() => Relation, (relation) => relation.personnage, {eager: true})
+  @OneToMany(() => Relation, (relation) => relation.personne, {eager: true})
   relations: Relation[]
 }

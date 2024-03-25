@@ -73,9 +73,9 @@ export class RelationController {
   }
 
   @Delete(':id')
-  @ApiOperation({summary: "Recherche d'un personnage par id"})
-  @ApiResponse({status: 201, description: 'Personnage supprimé'})
-  @ApiBadRequestResponse({description: 'Personnage non supprimé'})
+  @ApiOperation({summary: "Recherche d'un personne par id"})
+  @ApiResponse({status: 201, description: 'Personne supprimé'})
+  @ApiBadRequestResponse({description: 'Personne non supprimé'})
   delete(@Param('id') id: string) {
     return this.service.delete(id)
   }

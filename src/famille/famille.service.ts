@@ -6,7 +6,7 @@ import {paginate, PaginateQuery} from 'nestjs-paginate'
 
 @Injectable()
 export class FamilleService {
-  private readonly logger = new Logger('PersonnageService')
+  private readonly logger = new Logger('PersonneService')
 
   constructor(
     @InjectRepository(Famille)
@@ -49,7 +49,7 @@ export class FamilleService {
         relations: [
           'membres',
           'membres.relations',
-          'membres.relations.relatedPersonnage',
+          'membres.relations.relatedPersonne',
         ],
       })
     } catch (e) {
