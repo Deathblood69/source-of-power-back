@@ -11,8 +11,7 @@ export class PersonneService {
   constructor(
     @InjectRepository(Personne)
     private readonly repository: Repository<Personne>,
-  ) {
-  }
+  ) {}
 
   /**
    * Saves entity data to the database.
@@ -36,7 +35,6 @@ export class PersonneService {
    * @return A promise that resolves to a paginated list of entities.
    */
   public async findAll(query: PaginateQuery) {
-
     return paginate(query, this.repository, {
       sortableColumns: ['nom', 'prenom', 'dateNaissance'],
       defaultSortBy: [
@@ -51,8 +49,8 @@ export class PersonneService {
         age: true,
       },
       maxLimit: 0,
-      relations: ['famille', 'relations'],
-    }).catch(e => {
+      relations: ['famille', 'relations', 'relations.relatedPersonne'],
+    }).catch((e) => {
       this.logger.error(e)
       throw new HttpException('ERREUR_SEARCH', HttpStatus.BAD_REQUEST)
     })
