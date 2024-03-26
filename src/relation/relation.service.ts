@@ -13,8 +13,7 @@ export class RelationService {
   constructor(
     @InjectRepository(Relation)
     private readonly repository: Repository<Relation>,
-  ) {
-  }
+  ) {}
 
   /**
    * Saves entity data to the database.
@@ -54,21 +53,19 @@ export class RelationService {
    */
   public async findAll(query: PaginateQuery) {
     return paginate(query, this.repository, {
-      sortableColumns: ['type'],
       defaultSortBy: [['type', 'ASC']],
       nullSort: 'last',
-      searchableColumns: ['type'],
-      filterableColumns: {
-        nom: true,
-        chef: true,
-      },
       maxLimit: 0,
-      relations: ['membres'],
-    }).catch(e => {
+      relations: ['personne', 'relatedPersonne'],
+      sortableColumns: ['type', 'personne.id'],
+      searchableColumns: ['type', 'personne.id'],
+      filterableColumns: {
+        'personne.id': true,
+      },
+    }).catch((e) => {
       this.logger.error(e)
       throw new HttpException('ERREUR_SEARCH', HttpStatus.BAD_REQUEST)
     })
-
   }
 
   /**
